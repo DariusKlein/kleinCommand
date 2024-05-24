@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/DariusKlein/server-CLI/commands"
+	"github.com/DariusKlein/kleinCommand/commands"
 	"github.com/urfave/cli/v2"
 	"log"
 	"os"
