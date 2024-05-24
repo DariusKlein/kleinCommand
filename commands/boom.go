@@ -8,13 +8,14 @@ import (
 func Boom() *cli.Command {
 
 	return &cli.Command{
-		Name:   "boom",
-		Usage:  "explode",
-		Action: boom,
+		Name:    "boom",
+		Usage:   "explode",
+		Aliases: []string{"b"},
+		Action:  boom,
 	}
 }
 
-func boom(*cli.Context) error {
+func boom(c *cli.Context) error {
 	fmt.Println("BOOM")
 	return nil
 }
