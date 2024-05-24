@@ -12,6 +12,7 @@ import (
 )
 
 func main() {
+	config.CreatAction(&cli.Context{})
 	app := &cli.App{
 		Name:        "KleinCommand",
 		Usage:       "manage your home server",

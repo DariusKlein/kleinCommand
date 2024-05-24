@@ -16,12 +16,12 @@ func subcommands() []*cli.Command {
 		{
 			Name:   "create",
 			Usage:  "Generates a new configuration file",
-			Action: creatAction,
+			Action: CreatAction,
 		},
 	}
 }
 
-func creatAction(c *cli.Context) error {
+func CreatAction(c *cli.Context) error {
 	var path string
 
 	homeDir, _ := os.UserHomeDir()
@@ -40,10 +40,11 @@ func creatAction(c *cli.Context) error {
 		return err
 	}
 	client := github.NewClient(nil)
-	_, _, _, _ = client.Repositories.GetContents(context.Background(), "DariusKlein", "kleinCommand", "config.toml", nil)
+	a1, _, _, _ := client.Repositories.GetContents(context.Background(), "DariusKlein", "kleinCommand", "config.toml", nil)
+
 	configPath := filepath.Join(path, "/config.toml")
 
-	err := os.WriteFile(configPath, []byte(""), 0644)
+	err := os.WriteFile(configPath, []byte(*a1.Content), 0644)
 	if err != nil {
 		return err
 	}
