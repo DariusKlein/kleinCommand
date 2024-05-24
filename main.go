@@ -6,13 +6,19 @@ import (
 	"github.com/DariusKlein/kleinCommand/commands/config"
 	"github.com/DariusKlein/kleinCommand/commands/template"
 	"github.com/DariusKlein/kleinCommand/commands/welcome"
+	"github.com/DariusKlein/kleinCommand/services"
 	"github.com/urfave/cli/v2"
 	"log"
 	"os"
 )
 
 func main() {
-	config.CreatAction(&cli.Context{})
+
+	Config, err := services.ReadConfig()
+	if err != nil {
+		log.Fatalf("Error reading config: %v", err)
+	}
+
 	app := &cli.App{
 		Name:        "KleinCommand",
 		Usage:       "manage your home server",
@@ -27,11 +33,11 @@ func main() {
 		},
 		DefaultCommand: "help",
 		Commands: []*cli.Command{
-			template.Command(),
-			welcome.Command(),
-			boom.Command(),
-			bubbleTeaTest.Command(),
-			config.Command(),
+			template.Command(Config),
+			welcome.Command(Config),
+			boom.Command(Config),
+			bubbleTeaTest.Command(Config),
+			config.Command(Config),
 		},
 	}
 

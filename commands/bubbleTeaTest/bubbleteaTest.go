@@ -1,11 +1,12 @@
 package bubbleTeaTest
 
 import (
+	"github.com/DariusKlein/kleinCommand/types"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/urfave/cli/v2"
 )
 
-func Command() *cli.Command {
+func Command(config types.Config) *cli.Command {
 	return &cli.Command{
 		Name:   "BubbleTeaTest",
 		Usage:  "USAGE OF COMMAND",

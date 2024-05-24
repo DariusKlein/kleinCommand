@@ -1,1 +1,19 @@
-test123
+# Example config for kleinCommand
+
+# Settings for kleinCommand
+[settings]
+server_name = "klein server"
+
+# Variable overrides
+[variables]
+string1="example"
+int1=1
+
+# Custom commands
+[custom_commands]
+# Generate commands with kleinCommand or configure here
+[[custom_commands.games]]
+name = "example"
+status_command="example"
+start_command="example"
+stop_command="example"
