@@ -21,6 +21,9 @@ func ReadConfig() (types.Config, error) {
 	}
 
 	_, err = toml.Decode(string(file), &config)
+	if err != nil {
+		return config, err
+	}
 
 	return config, nil
 }

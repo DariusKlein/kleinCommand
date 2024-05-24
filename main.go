@@ -4,6 +4,7 @@ import (
 	"github.com/DariusKlein/kleinCommand/commands/boom"
 	"github.com/DariusKlein/kleinCommand/commands/bubbleTeaTest"
 	"github.com/DariusKlein/kleinCommand/commands/config"
+	"github.com/DariusKlein/kleinCommand/commands/games"
 	"github.com/DariusKlein/kleinCommand/commands/template"
 	"github.com/DariusKlein/kleinCommand/commands/welcome"
 	"github.com/DariusKlein/kleinCommand/services"
@@ -34,6 +35,7 @@ func main() {
 			boom.Command(Config),
 			bubbleTeaTest.Command(Config),
 			config.Command(Config),
+			games.Command(Config),
 		},
 	}
 
