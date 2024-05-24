@@ -13,7 +13,13 @@ int1=1
 [custom_commands]
 # Generate commands with kleinCommand or configure here
 [[custom_commands.games]]
-name = "example"
+name="example"
 status_command="docker ps --format '{{.Names}}'"
+start_command="echo start"
+stop_command="echo stop"
+
+[[custom_commands.games]]
+name="test"
+status_command='curl -s -o NUL -w "%{http_code}" https://api.portfolio.dariusklein.nl/check'
 start_command="echo start"
 stop_command="echo stop"
