@@ -38,8 +38,6 @@ func creatAction(c *cli.Context) error {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(path)
-	fmt.Println(configPath)
 	fmt.Println("Creating configuration file")
 	if err = os.MkdirAll(path, 0770); err != nil {
 		return err

@@ -14,7 +14,7 @@ func GetConfigPath() (path string, configPath string, err error) {
 	case "windows":
 		path = filepath.Dir(homeDir + "\\AppData\\Local\\kleinCommand\\")
 	case "linux":
-		path = filepath.Dir(homeDir + "/.config/kleinCommand")
+		path = filepath.Dir(homeDir + "/.config/kleinCommand/")
 	default:
 		return "", "", errors.New("unsupported platform")
 	}
