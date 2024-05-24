@@ -1,21 +1,21 @@
-package commands
+package boom
 
 import (
 	"fmt"
 	"github.com/urfave/cli/v2"
 )
 
-func Boom() *cli.Command {
+func Command() *cli.Command {
 
 	return &cli.Command{
 		Name:    "boom",
 		Usage:   "explode",
 		Aliases: []string{"b"},
-		Action:  boom,
+		Action:  action,
 	}
 }
 
-func boom(c *cli.Context) error {
+func action(c *cli.Context) error {
 	fmt.Println("BOOM")
 	return nil
 }

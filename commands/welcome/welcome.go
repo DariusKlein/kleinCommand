@@ -1,20 +1,20 @@
-package commands
+package welcome
 
 import (
 	"fmt"
 	"github.com/urfave/cli/v2"
 )
 
-func Welcome() *cli.Command {
+func Command() *cli.Command {
 
 	return &cli.Command{
 		Name:   "welcome",
 		Usage:  "Explains cli tool",
-		Action: welcome,
+		Action: action,
 	}
 }
 
-func welcome(*cli.Context) error {
+func action(*cli.Context) error {
 	fmt.Println("Welcome, \n you can use -h, --help for help.")
 	return nil
 }
