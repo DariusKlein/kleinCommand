@@ -1,4 +1,4 @@
-module kleinCommand
+module github.com/DariusKlein/server-CLI
 
 go 1.22
 
