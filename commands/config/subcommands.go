@@ -54,8 +54,10 @@ func creatAction(c *cli.Context) error {
 		if err != nil {
 			return err
 		}
+		fmt.Println("Created: " + configPath)
+	} else {
+		fmt.Println("Configuration file already exists")
 	}
-	fmt.Println("Created: " + configPath)
 	return nil
 }
 

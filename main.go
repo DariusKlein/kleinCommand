@@ -13,11 +13,7 @@ import (
 )
 
 func main() {
-
-	Config, err := services.ReadConfig()
-	if err != nil {
-		log.Fatalf("Error reading config: %v", err)
-	}
+	Config, _ := services.ReadConfig()
 
 	app := &cli.App{
 		Name:        "KleinCommand",
