@@ -27,9 +27,5 @@ func commands() []*cli.Command {
 
 // Action show help command if no sub commands are given for Config
 func Action(context context.Context, c *cli.Command) error {
-	err := cli.ShowSubcommandHelp(c)
-	if err != nil {
-		return err
-	}
-	return nil
+	return cli.ShowSubcommandHelp(c)
 }

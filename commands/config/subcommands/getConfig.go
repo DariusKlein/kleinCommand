@@ -34,7 +34,7 @@ func getConfigFlags() []cli.Flag {
 func getConfigAction(context context.Context, c *cli.Command) error {
 	_, configPath, err := common.GetConfigPath()
 	if err != nil {
-		fmt.Println(err)
+		return err
 	}
 
 	file, err := os.ReadFile(configPath)

@@ -2,10 +2,12 @@ package subcommands
 
 import (
 	"context"
+	"errors"
 	"github.com/urfave/cli/v3"
+	"log/slog"
 )
 
-var templateVar int
+var templateVar bool
 
 // Template Command
 func Template() *cli.Command {
@@ -21,12 +23,12 @@ func Template() *cli.Command {
 // templateFlags Register cli flags
 func templateFlags() []cli.Flag {
 	return []cli.Flag{
-		&cli.IntFlag{
+		&cli.BoolFlag{
 			Name:        "template",
 			Aliases:     []string{"t"},
 			Usage:       "usage",
-			Value:       1000,
-			DefaultText: "default text",
+			Value:       false,
+			DefaultText: "errors template",
 			Required:    false,
 			Destination: &templateVar,
 		},
@@ -35,5 +37,11 @@ func templateFlags() []cli.Flag {
 
 // templateAction logic for Template
 func templateAction(context context.Context, c *cli.Command) error {
+	slog.InfoContext(context, "template called", "logLevel", "INFO")
+	slog.DebugContext(context, "template called", "logLevel", "DEBUG")
+	if templateVar {
+		slog.ErrorContext(context, "template called", "logLevel", "ERROR")
+		return errors.New("template called with error")
+	}
 	return nil
 }

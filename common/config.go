@@ -1,5 +1,10 @@
 package common
 
 type Config struct {
-	environment string `toml:"environment"`
+	Settings Settings `toml:"settings"`
+}
+
+type Settings struct {
+	Environment string `toml:"environment"`
+	LogLevel    string `toml:"log_level"`
 }

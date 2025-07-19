@@ -3,3 +3,5 @@
 # Settings for kleinCommand
 [settings]
 environment=""
+#INFO,WARN,DEBUG,ERROR
+log_level="DEBUG"

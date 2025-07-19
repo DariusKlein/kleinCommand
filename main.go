@@ -2,19 +2,24 @@ package main
 
 import (
 	"context"
-	config "github.com/DariusKlein/kleinCommand/commands/config"
+	"github.com/DariusKlein/kleinCommand/commands/config"
 	"github.com/DariusKlein/kleinCommand/commands/templateCommand"
 	"github.com/DariusKlein/kleinCommand/common"
 	"github.com/urfave/cli/v3"
 	"log"
+	"log/slog"
 	"net/mail"
 	"os"
+	"strings"
 )
 
-var Config common.Config
-
 func main() {
-	Config, _ = common.ReadConfig()
+	conf, err := common.ReadConfig()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	setLogLevel(conf)
 
 	app := &cli.Command{
 		Name:        "KleinCommand",
@@ -38,4 +43,19 @@ func main() {
 	if err := app.Run(context.Background(), os.Args); err != nil {
 		log.Fatal(err)
 	}
+}
+
+func setLogLevel(conf common.Config) {
+	opts := &slog.HandlerOptions{}
+	switch strings.ToUpper(conf.Settings.LogLevel) {
+	case "INFO":
+		opts.Level = slog.LevelInfo
+	case "WARN":
+		opts.Level = slog.LevelWarn
+	case "DEBUG":
+		opts.Level = slog.LevelDebug
+	case "ERROR":
+		opts.Level = slog.LevelError
+	}
+	slog.SetLogLoggerLevel(opts.Level.Level())
 }
