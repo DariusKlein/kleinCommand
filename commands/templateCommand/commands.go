@@ -34,12 +34,15 @@ func Action(context context.Context, c *cli.Command) error {
 // PLACEHOLDER sub-category of CATEGORY NAME Category
 func subCategory() *cli.Command {
 	return &cli.Command{
-		Name:   "sub-category-template",
-		Usage:  "commands for sub-category-template",
-		Action: Action,
+		Name:    "sub-category-template",
+		Aliases: []string{"category"},
+		Usage:   "commands for sub-category-template",
+		Action:  Action,
 		Commands: []*cli.Command{
 			//commands or sub-category here
 			subcommands.Template(),
+			subcommands.StartServiceTemplate(),
+			subcommands.StopServiceTemplate(),
 		},
 		HideHelpCommand: true,
 	}

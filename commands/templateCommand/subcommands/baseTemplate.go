@@ -12,7 +12,7 @@ var templateVar bool
 // Template Command
 func Template() *cli.Command {
 	return &cli.Command{
-		Name:      "template command",
+		Name:      "basic",
 		Usage:     "template command usage",
 		Action:    templateAction,
 		Flags:     templateFlags(),
