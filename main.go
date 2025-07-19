@@ -1,45 +1,41 @@
 package main
 
 import (
-	"github.com/DariusKlein/kleinCommand/commands/boom"
-	"github.com/DariusKlein/kleinCommand/commands/bubbleTeaTest"
-	"github.com/DariusKlein/kleinCommand/commands/config"
-	"github.com/DariusKlein/kleinCommand/commands/games"
-	"github.com/DariusKlein/kleinCommand/commands/template"
-	"github.com/DariusKlein/kleinCommand/commands/welcome"
-	"github.com/DariusKlein/kleinCommand/services"
-	"github.com/urfave/cli/v2"
+	"context"
+	config "github.com/DariusKlein/kleinCommand/commands/config"
+	"github.com/DariusKlein/kleinCommand/commands/templateCommand"
+	"github.com/DariusKlein/kleinCommand/common"
+	"github.com/urfave/cli/v3"
 	"log"
+	"net/mail"
 	"os"
 )
 
-func main() {
-	Config, _ := services.ReadConfig()
+var Config common.Config
 
-	app := &cli.App{
+func main() {
+	Config, _ = common.ReadConfig()
+
+	app := &cli.Command{
 		Name:        "KleinCommand",
-		Usage:       "manage your home server",
+		Usage:       "CLI tool for internal use",
 		UsageText:   "kleinCommand [category] [command] [arguments...]",
-		Version:     "v0.0.1",
+		Version:     "v0.1.0",
 		HideVersion: true,
-		Authors: []*cli.Author{
-			{
-				Name:  "Darius",
-				Email: "darius.klein@dariusklein.nl",
+		Authors: []any{
+			mail.Address{
+				Name:    "Darius",
+				Address: "darius.klein@dariusklein.nl",
 			},
 		},
 		DefaultCommand: "help",
 		Commands: []*cli.Command{
-			template.Command(Config),
-			welcome.Command(Config),
-			boom.Command(Config),
-			bubbleTeaTest.Command(Config),
-			config.Command(Config),
-			games.Command(Config),
+			config.Category(),
+			templateCommand.Category(),
 		},
 	}
 
-	if err := app.Run(os.Args); err != nil {
+	if err := app.Run(context.Background(), os.Args); err != nil {
 		log.Fatal(err)
 	}
 }

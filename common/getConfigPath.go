@@ -1,4 +1,4 @@
-package services
+package common
 
 import (
 	"errors"
@@ -19,7 +19,7 @@ func GetConfigPath() (path string, configPath string, err error) {
 		return "", "", errors.New("unsupported platform")
 	}
 
-	configPath = filepath.Join(path, "/config.toml")
+	configPath = filepath.Join(path, "/kleinCommand.toml")
 
 	return path, configPath, nil
 }

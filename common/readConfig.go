@@ -1,15 +1,14 @@
-package services
+package common
 
 import (
 	"fmt"
 	"github.com/BurntSushi/toml"
-	"github.com/DariusKlein/kleinCommand/types"
 	"os"
 )
 
-var config types.Config
+var config Config
 
-func ReadConfig() (types.Config, error) {
+func ReadConfig() (Config, error) {
 	_, configPath, err := GetConfigPath()
 	if err != nil {
 		fmt.Println(err)
