@@ -3,6 +3,7 @@
 package services
 
 //go:generate go build -o binaries/ ./example
+//go:generate go build -o binaries/ ./parrot
 
 import (
 	_ "embed"
@@ -13,6 +14,9 @@ import (
 
 //go:embed binaries/exampleService.exe
 var exampleService []byte
+
+//go:embed binaries/parrotService.exe
+var parrotService []byte
 
 func runService(name string, file []byte) error {
 	executableName := name + ".exe"

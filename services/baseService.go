@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func BaseService(socketPath string, logic func(string)) {
+func BaseService(socketPath string, logic func(string, net.Conn)) {
 	// Remove socket path on os.Interrupt and syscall.SIGTERM
 	common.CatchInterrupt(func() {
 		os.Remove(socketPath)
@@ -70,7 +70,7 @@ func BaseService(socketPath string, logic func(string)) {
 	common.DeleteSelf()
 }
 
-func handleConnection(conn net.Conn, logic func(string), listener net.Listener) {
+func handleConnection(conn net.Conn, logic func(string, net.Conn), listener net.Listener) {
 	defer conn.Close()
 
 	scanner := bufio.NewScanner(conn)
@@ -81,7 +81,7 @@ func handleConnection(conn net.Conn, logic func(string), listener net.Listener) 
 			log.Println("Shutdown command received, exiting.")
 			listener.Close()
 		} else {
-			logic(input)
+			logic(input, conn)
 		}
 	}
 }

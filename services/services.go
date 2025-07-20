@@ -7,3 +7,7 @@ import (
 func RunExampleService() error {
 	return runService(common.ExampleServiceName, exampleService)
 }
+
+func RunParrotService() error {
+	return runService(common.ParrotServiceName, parrotService)
+}

@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"github.com/DariusKlein/kleinCommand/commands/config"
+	"github.com/DariusKlein/kleinCommand/commands/service"
 	"github.com/DariusKlein/kleinCommand/commands/templateCommand"
 	"github.com/DariusKlein/kleinCommand/common"
 	"github.com/urfave/cli/v3"
@@ -37,6 +38,7 @@ func main() {
 		Commands: []*cli.Command{
 			config.Category(),
 			templateCommand.Category(),
+			service.Category(),
 		},
 	}
 
