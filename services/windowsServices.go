@@ -2,7 +2,7 @@
 
 package services
 
-//go:generate go build ./example
+//go:generate go build -o binaries/ ./example
 
 import (
 	_ "embed"
@@ -11,7 +11,7 @@ import (
 	"syscall"
 )
 
-//go:embed exampleService.exe
+//go:embed binaries/exampleService.exe
 var exampleService []byte
 
 func runService(name string, file []byte) error {
