@@ -9,6 +9,7 @@ import (
 	_ "embed"
 	"errors"
 	"github.com/DariusKlein/kleinCommand/common"
+	"golang.org/x/sys/windows"
 	"os"
 	"os/exec"
 	"syscall"
@@ -43,10 +44,7 @@ func runService(name string, file []byte) error {
 	}
 
 	cmd := exec.Command(tempFile.Name())
-	cmd.SysProcAttr = &syscall.SysProcAttr{
-		HideWindow:    true,
-		CreationFlags: syscall.CREATE_NEW_PROCESS_GROUP,
-	}
+	cmd.SysProcAttr = &syscall.SysProcAttr{CreationFlags: windows.DETACHED_PROCESS}
 	if err = cmd.Start(); err != nil {
 		return err
 	}
