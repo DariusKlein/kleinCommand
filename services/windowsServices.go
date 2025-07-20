@@ -19,6 +19,10 @@ var exampleService []byte
 var parrotService []byte
 
 func runService(name string, file []byte) error {
+	// check for existing socket
+	if common.FileExists(common.GetSocketPath(name)) {
+		return errors.New("File " + common.GetSocketPath(name) + " already exists.")
+	}
 	executableName := name + ".exe"
 	tempFile, err := os.CreateTemp("", executableName)
 	if err != nil {
@@ -39,6 +43,9 @@ func runService(name string, file []byte) error {
 	cmd := exec.Command(tempFile.Name())
 	cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
 	if err = cmd.Start(); err != nil {
+		return err
+	}
+	if err = cmd.Process.Release(); err != nil {
 		return err
 	}
 
