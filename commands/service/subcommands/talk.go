@@ -14,13 +14,13 @@ func Talk() *cli.Command {
 	return &cli.Command{
 		Name:      "talk",
 		Usage:     "talk with parrot",
-		Action:    templateAction,
+		Action:    talkAction,
 		ArgsUsage: "send arg as message to parrot",
 	}
 }
 
-// templateAction logic for Template
-func templateAction(context context.Context, c *cli.Command) error {
+// talkAction logic for Template
+func talkAction(context context.Context, c *cli.Command) error {
 	conn, err := common.GetSocketConnection(common.ParrotServiceSocketPath)
 	if err != nil {
 		return err

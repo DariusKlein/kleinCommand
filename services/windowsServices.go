@@ -7,6 +7,8 @@ package services
 
 import (
 	_ "embed"
+	"errors"
+	"github.com/DariusKlein/kleinCommand/common"
 	"os"
 	"os/exec"
 	"syscall"
