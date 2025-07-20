@@ -14,19 +14,6 @@ func GetConfig() *cli.Command {
 		Name:   "get",
 		Usage:  "read configuration file",
 		Action: getConfigAction,
-		Flags:  getConfigFlags(),
-	}
-}
-
-// getConfigFlags Register cli flags
-func getConfigFlags() []cli.Flag {
-	return []cli.Flag{
-		&cli.BoolFlag{
-			Name:        "force",
-			Aliases:     []string{"f"},
-			Usage:       "force overwrite",
-			Destination: &force,
-		},
 	}
 }
 

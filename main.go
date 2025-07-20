@@ -46,16 +46,18 @@ func main() {
 }
 
 func setLogLevel(conf common.Config) {
-	opts := &slog.HandlerOptions{}
+	var logLevel slog.Level
 	switch strings.ToUpper(conf.Settings.LogLevel) {
 	case "INFO":
-		opts.Level = slog.LevelInfo
+		logLevel = slog.LevelInfo
 	case "WARN":
-		opts.Level = slog.LevelWarn
+		logLevel = slog.LevelWarn
 	case "DEBUG":
-		opts.Level = slog.LevelDebug
+		logLevel = slog.LevelDebug
 	case "ERROR":
-		opts.Level = slog.LevelError
+		logLevel = slog.LevelError
+	default:
+		log.Fatal("unknown log level", logLevel, conf.Settings.LogLevel)
 	}
-	slog.SetLogLoggerLevel(opts.Level.Level())
+	slog.SetLogLoggerLevel(logLevel)
 }
