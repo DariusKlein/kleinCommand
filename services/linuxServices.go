@@ -46,9 +46,6 @@ func runService(name string, file []byte) error {
 	if err = cmd.Start(); err != nil {
 		return err
 	}
-	if err = cmd.Process.Release(); err != nil {
-		return err
-	}
 
 	return nil
 }
