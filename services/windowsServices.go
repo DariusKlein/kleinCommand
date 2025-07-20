@@ -43,7 +43,10 @@ func runService(name string, file []byte) error {
 	}
 
 	cmd := exec.Command(tempFile.Name())
-	cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
+	cmd.SysProcAttr = &syscall.SysProcAttr{
+		HideWindow:    true,
+		CreationFlags: syscall.CREATE_NEW_PROCESS_GROUP,
+	}
 	if err = cmd.Start(); err != nil {
 		return err
 	}
