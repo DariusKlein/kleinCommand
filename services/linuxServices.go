@@ -4,7 +4,12 @@ package services
 
 //go:generate go build ./example
 
-import _ "embed"
+import (
+	_ "embed"
+	"os"
+	"os/exec"
+	"syscall"
+)
 
 //go:embed exampleService
 var exampleService []byte

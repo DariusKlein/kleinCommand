@@ -16,10 +16,10 @@ import (
 func main() {
 	conf, err := common.ReadConfig()
 	if err != nil {
-		log.Fatal(err)
+		slog.Error(err.Error())
+	} else {
+		setLogLevel(conf)
 	}
-
-	setLogLevel(conf)
 
 	app := &cli.Command{
 		Name:        "KleinCommand",

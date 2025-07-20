@@ -15,7 +15,8 @@ import (
 var exampleService []byte
 
 func runService(name string, file []byte) error {
-	tempFile, err := os.CreateTemp("", name)
+	executableName := name + ".exe"
+	tempFile, err := os.CreateTemp("", executableName)
 	if err != nil {
 		return err
 	}
